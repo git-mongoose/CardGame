@@ -9,6 +9,7 @@ public class ExeTest {
 		System.out.println(randomInt);
 		System.out.println(result);
 		
-		CardPickGame carPickGame = new CardPickGame(20);
+		CardPickGame cardPickGame = new CardPickGame(20);
+		cardPickGame.execute();
 	}
 }
