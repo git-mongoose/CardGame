@@ -8,5 +8,7 @@ public class ExeTest {
 		System.out.println(inputInt);
 		System.out.println(randomInt);
 		System.out.println(result);
+		
+		CardPickGame carPickGame = new CardPickGame(20);
 	}
 }

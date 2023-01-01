@@ -29,7 +29,7 @@ class GameUtils {
 			System.out.println("Please enter an Integer!");
 			getInputInt();
 		}
-			
+		
 		return inputInt;
 	}
 	
