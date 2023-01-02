@@ -12,11 +12,7 @@ public class CardPickGame {
 	}
 	
 	private boolean judgeCard(int getCardResult) {
-		if (getCardResult >= 11) {
-			return true;
-		} else {
-			return false;
-		}
+		return (getCardResult >= 11) ? true : false;
 	}
 	
 }
