@@ -13,7 +13,7 @@ public class CardPickGame {
 	}
 	
 	public void execute() {
-		getCard();
+		boolean reusult = judgeCard(getCard());
 	}
 	
 	private int getCard() {
