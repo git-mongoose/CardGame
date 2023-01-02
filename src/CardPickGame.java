@@ -49,4 +49,9 @@ public class CardPickGame {
 		
 		return userNumSum;
 	}
+	
+	private boolean judgeCard(int getCardResult) {
+		return (getCardResult >= 11) ? true : false;
+	}
+	
 }
