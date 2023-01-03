@@ -1,7 +1,5 @@
 public class ExeTest {
 	public static void main(String[] args) {
-//		
-//		CardPickGame cardPickGame = new CardPickGame(20);
-//		cardPickGame.execute();
+		HighAndLowGame highAndLowGame = new HighAndLowGame(50, 2);	
 	}
 }
