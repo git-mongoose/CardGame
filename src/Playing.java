@@ -6,12 +6,12 @@ public class Playing {
 		System.out.println("Enter your username");
 		while (true) {
 			username = GameUtils.getInputString();
-			boolean result = GameUtils.checkPattern(username);
-			if (result == false) {
-				System.out.println("Does not match condition of the username");
-			} else {
+	;
+			if (GameUtils.checkPattern(username)) {
 				break;
-			}			
+			}
+
+			System.out.println("Does not match condition of the username");
 		}
 		System.out.println("Hello " + username);
 		CardPickGame cardPickGame = new CardPickGame(possessionCoin);
