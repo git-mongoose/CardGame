@@ -13,7 +13,49 @@ public class CardPickGame {
 	}
 	
 	public void execute() {
-		boolean reusult = judgeCard(getCard());
+		if (this.posessionCoin == 0) {
+			return;
+		} else if (this.posessionCoin >= 1){
+			boolean loop = true;
+			int betCoin = 0;
+			while (loop) {
+				System.out.println("You have " + this.posessionCoin + "Coin, Start the game? y/n");
+				String answer = GameUtils.getInputString();
+				switch (answer) {
+					case "y":
+						if (this.posessionCoin < this.maxBetCoin) {
+							this.maxBetCoin = this.posessionCoin;
+						}
+						System.out.println("Please bet Coin 1 ~ " + maxBetCoin);
+							betCoin = GameUtils.getInputInt();
+						if (betCoin > 0 && betCoin < this.maxBetCoin) {
+							this.posessionCoin -= betCoin;
+							loop = false;
+							break;
+						}
+					case "n":
+						break;
+					default:
+						System.out.println("Please enter y or n.");	
+						break;
+				}
+			}
+			
+			boolean result = judgeCard(getCard());
+			if (result == true) {
+				betCoin *= 2;
+				this.posessionCoin += betCoin;
+				System.out.println("You Win! Get " + betCoin + "Coin!");
+				System.out.println("You got " + betCoin + "Coin !!");
+			} else if (result == false) {
+				this.posessionCoin = this.posessionCoin + 0;
+				System.out.println("You lose");
+			}
+			
+			
+			
+			execute();
+		}
 	}
 	
 	private int getCard() {
