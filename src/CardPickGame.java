@@ -51,10 +51,13 @@ public class CardPickGame {
 				System.out.println("You Win! Get " + getCoin + "Coin!");
 				this.possessionCoin += getCoin;
 			}
+			
+			if (getCoin == 0) {
+				System.out.println("You lose");
+			}
 			if (getCoin >= 1) {
 				System.out.println("You got " + getCoin + "Coin !!");
 			}
-			
 		}
 	}
 	
