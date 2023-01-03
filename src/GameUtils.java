@@ -44,6 +44,5 @@ class GameUtils {
 			return false;
 		} 
 		return Pattern.matches(REGEX_ALPHABET, targetStr);
-
 	}
 }

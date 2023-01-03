@@ -5,56 +5,56 @@ import java.util.List;
 public class CardPickGame {
 	private int maxBetCoin = 100;
 	private int deckSetCount = 2;
-	private int posessionCoin;
+	private int possessionCoin;
 	
 	public CardPickGame(int posessionCoin) {
-		this.posessionCoin = posessionCoin;
+		this.possessionCoin = posessionCoin;
 		
 	}
 	
-	public void execute() {
-		if (this.posessionCoin == 0) {
-			return;
-		} else if (this.posessionCoin >= 1){
-			boolean loop = true;
-			int betCoin = 0;
-			while (loop) {
-				System.out.println("You have " + this.posessionCoin + "Coin, Start the game? y/n");
-				String answer = GameUtils.getInputString();
-				switch (answer) {
-					case "y":
-						if (this.posessionCoin < this.maxBetCoin) {
-							this.maxBetCoin = this.posessionCoin;
-						}
-						System.out.println("Please bet Coin 1 ~ " + maxBetCoin);
-							betCoin = GameUtils.getInputInt();
-						if (betCoin > 0 && betCoin < this.maxBetCoin) {
-							this.posessionCoin -= betCoin;
-							loop = false;
-							break;
-						}
-					case "n":
-						break;
-					default:
-						System.out.println("Please enter y or n.");	
-						break;
+	public int execute() {
+		while(true) {
+			if (this.possessionCoin == 0) {
+				return this.possessionCoin;
+			}
+			
+			while (true) {
+				System.out.println("You have " + this.possessionCoin + "Coin, Start the game? y / n");
+				String startValue = GameUtils.getInputString();
+				if (startValue.equals("y")) {
+					break;
+				} else if (startValue.equals("n")) {
+					return this.possessionCoin;
+				} else {
+					System.out.println("Please enter y or n");
 				}
 			}
 			
-			boolean result = judgeCard(getCard());
-			if (result == true) {
-				betCoin *= 2;
-				this.posessionCoin += betCoin;
-				System.out.println("You Win! Get " + betCoin + "Coin!");
-				System.out.println("You got " + betCoin + "Coin !!");
-			} else if (result == false) {
-				this.posessionCoin = this.posessionCoin + 0;
-				System.out.println("You lose");
+			int ableBetCoin = Math.min(this.maxBetCoin, this.possessionCoin);
+			System.out.println("Please bet Coin 1 ~ " + ableBetCoin);
+			
+			int userBetCoin = 0;
+			while (true) {
+				userBetCoin = GameUtils.getInputInt();
+				if (userBetCoin > 0 && userBetCoin <= ableBetCoin) {
+					break;
+				}
 			}
 			
+			this.possessionCoin -= userBetCoin;
 			
+			int userCard = this.getCard();
+			boolean isWinner = this.judgeCard(userCard);
+			int getCoin = 0;
+			if (isWinner) {
+				getCoin = userBetCoin * 2;
+				System.out.println("You Win! Get " + getCoin + "Coin!");
+				this.possessionCoin += getCoin;
+			}
+			if (getCoin >= 1) {
+				System.out.println("You got " + getCoin + "Coin !!");
+			}
 			
-			execute();
 		}
 	}
 	
