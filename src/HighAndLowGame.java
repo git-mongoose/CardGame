@@ -17,6 +17,10 @@ public class HighAndLowGame {
 		cardList = getCard(cardList);
 		System.out.println(cardList);
 		
+		cardList = getCard(cardList);
+		System.out.println(cardList);
+		boolean result = judgeCard(cardList, true);
+		System.out.println(result);
 	}
 	
 	private List<Integer> getCard(List<Integer> cardList) {
@@ -27,13 +31,13 @@ public class HighAndLowGame {
 		}
 		
 		
-		
 		int cardA;
 		
 		while (true) {
 			int randNumA1 = GameUtils.getRandomInt(2);
 			int randNumA2 = GameUtils.getRandomInt(10);
 			cardA = setDeck.get(randNumA1).get(randNumA2);
+			
 			
 			int count = 0;
 			for (int value : cardList) {
@@ -52,5 +56,19 @@ public class HighAndLowGame {
 		
 		System.out.println("pick card --" + showValue + "--");
 		return cardList;
+	}
+	
+	private boolean judgeCard(List<Integer> cardList, boolean pickChoice) {
+		int lastIdx = cardList.size() - 1;
+		int a = cardList.get(lastIdx);
+		int b = cardList.get(lastIdx - 1);
+		
+		if (a == b) {
+			return false;
+		} else if (a > b){
+			return pickChoice ? true : false;
+		} else {
+			return pickChoice ? false : true;
+		}
 	}
 }
