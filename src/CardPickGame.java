@@ -49,6 +49,8 @@ public class CardPickGame {
 			if (isWinner) {
 				getCoin = userBetCoin * 2;
 				System.out.println("You Win! Get " + getCoin + "Coin!");
+				HighAndLowGame highAndLowGame = new HighAndLowGame(getCoin, this.deckSetCount);
+				getCoin = highAndLowGame.execute();
 				this.possessionCoin += getCoin;
 			}
 			
@@ -58,8 +60,6 @@ public class CardPickGame {
 			if (getCoin >= 1) {
 				System.out.println("You got " + getCoin + "Coin !!");
 			}
-			
-			return getCoin;
 		}
 	}
 	

@@ -16,10 +16,8 @@ public class Playing {
 		}
 		System.out.println("Hello " + username);
 		CardPickGame cardPickGame = new CardPickGame(possessionCoin);
-		int getCoin = cardPickGame.execute();
-		HighAndLowGame highAndLowGame = new HighAndLowGame(getCoin, 2);
-		highAndLowGame.execute();
-		
+		possessionCoin = cardPickGame.execute();
+
 		System.out.println(username + " Possession : " + possessionCoin + "Coin");
 	}
 }
