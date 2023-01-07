@@ -59,16 +59,18 @@ public class HighAndLowGame {
 	}
 	
 	private boolean judgeCard(List<Integer> cardList, boolean pickChoice) {
-		int lastIdx = cardList.size() - 1;
-		int a = cardList.get(lastIdx);
-		int b = cardList.get(lastIdx - 1);
+		int num = cardList.size();
+		int lastCard = cardList.get(num - 1);
+		int penultimateCard = cardList.get(num - 2);
 		
-		if (a == b) {
+		if (lastCard == penultimateCard) {
 			return false;
-		} else if (a > b){
-			return pickChoice ? true : false;
-		} else {
-			return pickChoice ? false : true;
 		}
+		
+		boolean flg = (lastCard > penultimateCard) ? true : false;
+		if (pickChoice == flg) {
+			return true;
+		}
+		return false;
 	}
 }
