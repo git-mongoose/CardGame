@@ -4,9 +4,10 @@ public class Playing {
 		int possessionCoin = 1000;
 		System.out.println("Welcome !");
 		System.out.println("Enter your username");
+		
 		while (true) {
 			username = GameUtils.getInputString();
-	;
+	
 			if (GameUtils.checkPattern(username)) {
 				break;
 			}
@@ -15,7 +16,9 @@ public class Playing {
 		}
 		System.out.println("Hello " + username);
 		CardPickGame cardPickGame = new CardPickGame(possessionCoin);
-		possessionCoin = cardPickGame.execute();
+		int getCoin = cardPickGame.execute();
+		HighAndLowGame highAndLowGame = new HighAndLowGame(getCoin, 2);
+		highAndLowGame.execute();
 		
 		System.out.println(username + " Possession : " + possessionCoin + "Coin");
 	}

@@ -58,6 +58,8 @@ public class CardPickGame {
 			if (getCoin >= 1) {
 				System.out.println("You got " + getCoin + "Coin !!");
 			}
+			
+			return getCoin;
 		}
 	}
 	
