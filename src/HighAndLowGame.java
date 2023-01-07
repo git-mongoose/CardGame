@@ -12,15 +12,57 @@ public class HighAndLowGame {
 		this.deckSetCount = deckSetCount;
 	}
 	
-	public void execute() {
+	public int execute() {
 		List<Integer> cardList = new ArrayList<Integer>();
-		cardList = getCard(cardList);
-		System.out.println(cardList);
+		cardList = this.getCard(cardList);
 		
-		cardList = getCard(cardList);
-		System.out.println(cardList);
-		boolean result = judgeCard(cardList, true);
-		System.out.println(result);
+		while (true) {
+			if (this.earnedCoinCount > this.maxWinCoin) {
+				return this.earnedCoinCount;
+			}
+			
+			System.out.println("Your winCoin is " + earnedCoinCount);		
+			
+			while (true) {
+				System.out.println("Playing High And Low? y/n");
+				String startValue = GameUtils.getInputString();
+				if (startValue.equals("n")) {
+					return earnedCoinCount;
+				} else if (startValue.equals("y")) {
+					break;
+				} else {
+					System.out.println("Input error..Please retyrpe!");
+				}			
+			}
+			
+			boolean pickChoice = true;
+			while (true) {
+				System.out.println("High or low? h/l");
+				String userChoice = GameUtils.getInputString();
+				if (userChoice.equals("h")) {
+					break;
+				} else if (userChoice.equals("l")) {
+					pickChoice = false;
+					break;
+				} else {
+					System.out.println("Input error..Please retyrpe!");
+				}
+			}
+			cardList = this.getCard(cardList);
+			boolean isWinner = this.judgeCard(cardList, pickChoice);
+			
+			if (isWinner) {
+				this.earnedCoinCount *= 2;
+			} else {
+				this.earnedCoinCount = 0;
+			}
+			
+			if (this.earnedCoinCount == 0) {
+				return this.earnedCoinCount;
+			}
+			
+			System.out.println("You got " + this.earnedCoinCount + "Coin !!");
+		}
 	}
 	
 	private List<Integer> getCard(List<Integer> cardList) {
@@ -29,7 +71,6 @@ public class HighAndLowGame {
 		for (int i = 0; i < this.deckSetCount; i++) {
 			setDeck.add(i, onePair);
 		}
-		
 		
 		int cardA;
 		
